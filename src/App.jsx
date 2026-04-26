@@ -9,6 +9,7 @@ function App() {
     <div>
       <h1>CI/CD Workshop</h1>
       <p id="status">Status: Ready</p>
+      <p>Testing 123</p>
     </div>
   )
 }
