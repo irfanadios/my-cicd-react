@@ -7,7 +7,6 @@ export default defineConfig({
   base: 'my-cicd-react',
   test: {
     globals: true,
-    environment: 'jsdom',
-    setupFiles: './src/setupTests.js'
+    environment: 'jsdom'
   }
 })
