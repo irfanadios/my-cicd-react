@@ -1,0 +1,37 @@
+name: Deploy React to GitHub Pages
+
+on:
+  push:
+    branches: [ main ] # Trigger jalan setiap ada push ke branch main
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Install Dependencies
+        run: npm install
+
+      # PHASE 1: TESTING
+      - name: Run Tests
+        run: npm test
+
+      # PHASE 2: BUILD
+      - name: Build Production
+        run: npm run build
+
+      # PHASE 3: DEPLOYMENT
+      - name: Deploy to GitHub Pages
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./dist # Folder hasil build vite
